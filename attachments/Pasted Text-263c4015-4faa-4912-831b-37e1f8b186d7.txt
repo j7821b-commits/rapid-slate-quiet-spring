@@ -1,0 +1,392 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swarm Node Model: South Texas Duplex</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a;
+            color: #e2e8f0;
+        }
+
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+        }
+
+        .pulse-red {
+            animation: pulse-red 2s infinite;
+        }
+
+        @keyframes pulse-red {
+            0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+        }
+
+        .swarm-log {
+            scrollbar-width: thin;
+            scrollbar-color: #475569 #1e293b;
+        }
+        
+        .swarm-log::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .swarm-log::-webkit-scrollbar-track {
+            background: #1e293b;
+        }
+        
+        .swarm-log::-webkit-scrollbar-thumb {
+            background-color: #475569;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="min-h-screen p-4 md:p-8">
+    <div class="max-w-7xl mx-auto space-y-6">
+        
+        <!-- Header -->
+        <header class="flex flex-col md:flex-row justify-between items-start md:items-center glass-panel p-6">
+            <div>
+                <h1 class="text-3xl font-bold text-teal-400"><i class="fa-solid fa-network-wired mr-3"></i>Swarm Ecosystem: Local Node</h1>
+                <p class="text-slate-400 mt-1">Operational Area: Bexar County / San Antonio, TX | 311-Unit Duplex Subset</p>
+            </div>
+            <div class="mt-4 md:mt-0 flex gap-4">
+                <div class="text-right">
+                    <p class="text-sm text-slate-400">Node Status</p>
+                    <p class="text-emerald-400 font-semibold"><i class="fa-solid fa-circle text-xs mr-1 animate-pulse"></i>Active Monitoring</p>
+                </div>
+                <div class="text-right border-l border-slate-700 pl-4">
+                    <p class="text-sm text-slate-400">Current Date</p>
+                    <p class="text-white font-semibold" id="current-date-display">Sept 7, 2026</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            
+            <!-- Unit A Data -->
+            <div class="glass-panel p-6 relative overflow-hidden" id="unit-a-card">
+                <div class="absolute top-0 right-0 p-4">
+                    <span id="unit-a-status" class="px-3 py-1 text-xs font-bold rounded-full bg-red-900 text-red-300 border border-red-700 pulse-red">EVICTION RISK</span>
+                </div>
+                <h2 class="text-xl font-bold text-white mb-4"><i class="fa-solid fa-door-closed mr-2 text-slate-400"></i>Unit A: The Garcia Family</h2>
+                
+                <div class="space-y-4">
+                    <!-- Family Profile -->
+                    <div class="bg-slate-800 p-3 rounded-lg border border-slate-700">
+                        <div class="flex justify-between items-center mb-2">
+                            <h3 class="text-sm font-semibold text-teal-300">Profile</h3>
+                            <span class="text-xs text-slate-400">5 Members (2 Minors)</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 text-sm">
+                            <div class="text-slate-400">Mo. Income:</div>
+                            <div class="text-white text-right">$2,850 <span class="text-xs text-red-400">(Below 2026 FPL)</span></div>
+                            <div class="text-slate-400">Rent (Avg SA):</div>
+                            <div class="text-white text-right">$1,395 <span class="text-xs text-slate-500">(2BR House)</span></div>
+                            <div class="text-slate-400">Utilities:</div>
+                            <div class="text-white text-right">$320</div>
+                        </div>
+                    </div>
+
+                    <!-- Deficit & Crisis -->
+                    <div class="bg-slate-800 p-3 rounded-lg border border-red-800/50">
+                        <h3 class="text-sm font-semibold text-red-400 mb-2">Current Friction</h3>
+                        <p class="text-sm text-slate-300 mb-2">Notice to Vacate served 2 days ago. 24 hours remaining before landlord files formal eviction suit.</p>
+                        <div class="flex justify-between text-sm font-bold">
+                            <span class="text-slate-400">Immediate Deficit:</span>
+                            <span class="text-red-400">-$1,450 (Rent + Late Fees)</span>
+                        </div>
+                    </div>
+
+                    <!-- Swarm Action Button -->
+                    <button onclick="triggerSwarmAction('A')" id="btn-swarm-a" class="w-full bg-teal-600 hover:bg-teal-500 text-white font-semibold py-3 px-4 rounded-lg transition duration-200 flex items-center justify-center">
+                        <i class="fa-solid fa-bolt mr-2"></i>Deploy Swarm Intervention
+                    </button>
+                    
+                    <!-- Analog Print Status (Hidden initially) -->
+                    <div id="analog-status-a" class="hidden mt-2 bg-slate-900 border border-teal-500/30 p-3 rounded-lg flex items-center justify-between">
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-print text-teal-400 mr-3"></i>
+                            <div>
+                                <p class="text-xs text-slate-400">Analog Payload Prepared</p>
+                                <p class="text-sm text-white font-semibold">City of SA Rental Assist. Packet</p>
+                            </div>
+                        </div>
+                        <button onclick="printAnalog('A')" class="text-xs bg-slate-700 hover:bg-slate-600 px-3 py-1 rounded text-white">PRINT</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Unit B Data -->
+            <div class="glass-panel p-6 relative overflow-hidden" id="unit-b-card">
+                <div class="absolute top-0 right-0 p-4">
+                    <span id="unit-b-status" class="px-3 py-1 text-xs font-bold rounded-full bg-yellow-900 text-yellow-300 border border-yellow-700">UTILITY RISK</span>
+                </div>
+                <h2 class="text-xl font-bold text-white mb-4"><i class="fa-solid fa-door-closed mr-2 text-slate-400"></i>Unit B: The Washingtons</h2>
+                
+                <div class="space-y-4">
+                    <!-- Family Profile -->
+                    <div class="bg-slate-800 p-3 rounded-lg border border-slate-700">
+                        <div class="flex justify-between items-center mb-2">
+                            <h3 class="text-sm font-semibold text-teal-300">Profile</h3>
+                            <span class="text-xs text-slate-400">5 Members (2 Minors)</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 text-sm">
+                            <div class="text-slate-400">Mo. Income:</div>
+                            <div class="text-white text-right">$3,100 <span class="text-xs text-yellow-400">(At 2026 FPL)</span></div>
+                            <div class="text-slate-400">Rent (Avg SA):</div>
+                            <div class="text-white text-right">$1,395 <span class="text-xs text-slate-500">(2BR House)</span></div>
+                            <div class="text-slate-400">Utilities (SAWS/CPS):</div>
+                            <div class="text-white text-right">$480 <span class="text-xs text-red-400">Past Due</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Deficit & Crisis -->
+                    <div class="bg-slate-800 p-3 rounded-lg border border-yellow-800/50">
+                        <h3 class="text-sm font-semibold text-yellow-400 mb-2">Current Friction</h3>
+                        <p class="text-sm text-slate-300 mb-2">CPS Energy disconnect notice received. Analog Cooldown for local ministry assistance expired yesterday.</p>
+                        <div class="flex justify-between text-sm font-bold">
+                            <span class="text-slate-400">Immediate Deficit:</span>
+                            <span class="text-yellow-400">-$480 (Utilities)</span>
+                        </div>
+                    </div>
+
+                    <!-- Swarm Action Button -->
+                    <button onclick="triggerSwarmAction('B')" id="btn-swarm-b" class="w-full bg-teal-600 hover:bg-teal-500 text-white font-semibold py-3 px-4 rounded-lg transition duration-200 flex items-center justify-center">
+                        <i class="fa-solid fa-bolt mr-2"></i>Deploy Swarm Intervention
+                    </button>
+                    
+                     <!-- Analog Print Status (Hidden initially) -->
+                     <div id="analog-status-b" class="hidden mt-2 bg-slate-900 border border-teal-500/30 p-3 rounded-lg flex items-center justify-between">
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-print text-teal-400 mr-3"></i>
+                            <div>
+                                <p class="text-xs text-slate-400">Analog Payload Prepared</p>
+                                <p class="text-sm text-white font-semibold">CAM Utility Assistance Packet</p>
+                            </div>
+                        </div>
+                        <button onclick="printAnalog('B')" class="text-xs bg-slate-700 hover:bg-slate-600 px-3 py-1 rounded text-white">PRINT</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cyber-Promotor Dashboard -->
+            <div class="glass-panel p-6 flex flex-col h-full border-teal-500/30 border">
+                <h2 class="text-xl font-bold text-white mb-2"><i class="fa-solid fa-user-shield mr-2 text-violet-400"></i>Liaison Terminal</h2>
+                <p class="text-xs text-slate-400 mb-4 border-b border-slate-700 pb-2">Swarm Event Log & Human Routing</p>
+                
+                <div class="bg-slate-900 rounded-lg p-4 flex-grow swarm-log overflow-y-auto" id="swarm-event-log" style="max-height: 400px;">
+                    <!-- Logs will be injected here -->
+                    <div class="text-sm text-slate-500 italic mb-2">System Initialized. Awaiting friction triggers...</div>
+                </div>
+
+                <div class="mt-4 pt-4 border-t border-slate-700">
+                    <div class="flex justify-between items-center text-sm">
+                        <span class="text-slate-400">Community Micro-Fund:</span>
+                        <span class="text-emerald-400 font-bold">$1,250.00</span>
+                    </div>
+                    <p class="text-xs text-slate-500 mt-1">Available for instant syndication if grants fail.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Ecosystem Visualizer -->
+        <div class="glass-panel p-6 mt-6">
+            <h3 class="text-lg font-bold text-white mb-4">Economic Trajectory: Without vs. With Swarm</h3>
+            <div class="w-full h-64">
+                <canvas id="trajectoryChart"></canvas>
+            </div>
+            <p class="text-xs text-slate-400 mt-4 text-center">Demonstrating the avoidance of the "Luxury Tax" (Eviction fees, high-interest loans) via Swarm API.</p>
+        </div>
+    </div>
+
+    <script>
+        // State Management
+        const state = {
+            A: { status: 'danger', resolved: false },
+            B: { status: 'warning', resolved: false }
+        };
+
+        // Initialize Chart
+        const ctx = document.getElementById('trajectoryChart').getContext('2d');
+        const trajectoryChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4 (Eviction/Disconnect)'],
+                datasets: [
+                    {
+                        label: 'Standard Trajectory (No Swarm)',
+                        data: [0, -200, -500, -2500], // Descending into debt/eviction costs
+                        borderColor: '#ef4444',
+                        backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                        borderDash: [5, 5],
+                        tension: 0.3,
+                        fill: true
+                    },
+                    {
+                        label: 'Swarm Modulated Trajectory',
+                        data: [0, -200, -200, 0], // Intercepted and equalized
+                        borderColor: '#2dd4bf',
+                        backgroundColor: 'rgba(45, 212, 191, 0.2)',
+                        tension: 0.3,
+                        fill: true
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { labels: { color: '#e2e8f0' } }
+                },
+                scales: {
+                    y: { 
+                        grid: { color: '#334155' },
+                        ticks: { color: '#94a3b8', callback: function(value) { return '$' + value; } }
+                    },
+                    x: { 
+                        grid: { color: '#334155' },
+                        ticks: { color: '#94a3b8' }
+                    }
+                }
+            }
+        });
+
+        function addLogEntry(message, type = 'info') {
+            const logContainer = document.getElementById('swarm-event-log');
+            const entry = document.createElement('div');
+            
+            let icon = 'fa-info-circle text-teal-400';
+            let color = 'text-slate-300';
+            
+            if (type === 'action') {
+                icon = 'fa-bolt text-yellow-400';
+                color = 'text-white font-semibold';
+            } else if (type === 'human') {
+                icon = 'fa-user-check text-violet-400';
+                color = 'text-violet-200';
+            } else if (type === 'success') {
+                icon = 'fa-check-circle text-emerald-400';
+                color = 'text-emerald-300';
+            }
+
+            const time = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', second:'2-digit'});
+
+            entry.className = `text-sm mb-3 border-l-2 border-slate-700 pl-2 py-1`;
+            entry.innerHTML = `
+                <div class="flex items-start">
+                    <i class="fa-solid ${icon} mt-1 mr-2 w-4"></i>
+                    <div>
+                        <span class="text-xs text-slate-500 mr-2">[${time}]</span>
+                        <span class="${color}">${message}</span>
+                    </div>
+                </div>
+            `;
+            
+            logContainer.appendChild(entry);
+            logContainer.scrollTop = logContainer.scrollHeight;
+        }
+
+        function triggerSwarmAction(unit) {
+            if (state[unit].resolved) return;
+            
+            const btn = document.getElementById(`btn-swarm-${unit.toLowerCase()}`);
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i>Swarm Processing...';
+            btn.classList.replace('bg-teal-600', 'bg-slate-600');
+
+            if (unit === 'A') {
+                // Unit A Simulation: Eviction Prevention (City of San Antonio Grant)
+                addLogEntry('Alert intercepted: Unit A Notice to Vacate (3-Day).', 'action');
+                
+                setTimeout(() => {
+                    addLogEntry('Scraping Bexar County 2026 grant portals for Family of 5 ($38,680 FPL eligibility).');
+                }, 1000);
+
+                setTimeout(() => {
+                    addLogEntry('Match found: City of San Antonio Rental Assistance Program. Up to $3,500 max assistance.', 'success');
+                    addLogEntry('Auto-filling digital application via encrypted PII vault...', 'action');
+                }, 2500);
+
+                setTimeout(() => {
+                    addLogEntry('Application requires physical signature and wet-ink ID copy for landlord mediation.', 'info');
+                    addLogEntry('Routing to Liaison... Analog Payload ready for print.', 'human');
+                    
+                    document.getElementById('analog-status-a').classList.remove('hidden');
+                    btn.style.display = 'none';
+                }, 4000);
+
+            } else if (unit === 'B') {
+                // Unit B Simulation: Utility Assistance (Analog Ministry - CAM)
+                addLogEntry('Alert intercepted: Unit B CPS Energy Disconnect.', 'action');
+                
+                setTimeout(() => {
+                    addLogEntry('Checking "Analog Cooldown" constraints for local ministries.');
+                }, 1000);
+
+                setTimeout(() => {
+                    addLogEntry('Cooldown cleared. Christian Assistance Ministry (CAM) allows utility assist once per 12 months.', 'success');
+                    addLogEntry('Compiling physical intake packet (ID, SSN, Disconnect Notice)...', 'action');
+                }, 2500);
+
+                setTimeout(() => {
+                    addLogEntry('CAM requires physical walk-in. Digital transfer blocked. Routing to Liaison for printing.', 'human');
+                    
+                    document.getElementById('analog-status-b').classList.remove('hidden');
+                    btn.style.display = 'none';
+                }, 4000);
+            }
+        }
+
+        function printAnalog(unit) {
+            const statusDiv = document.getElementById(`analog-status-${unit.toLowerCase()}`);
+            const badge = document.getElementById(`unit-${unit.toLowerCase()}-status`);
+            
+            addLogEntry(`Liaison authenticated vault. Printing analog packet for Unit ${unit}.`, 'human');
+            
+            statusDiv.innerHTML = `
+                <div class="flex items-center text-emerald-400">
+                    <i class="fa-solid fa-check-circle mr-3"></i>
+                    <div>
+                        <p class="text-sm font-semibold">Packet Printed</p>
+                        <p class="text-xs text-slate-400">Liaison en route to unit.</p>
+                    </div>
+                </div>
+            `;
+            
+            statusDiv.classList.replace('border-teal-500/30', 'border-emerald-500/50');
+            
+            setTimeout(() => {
+                if(unit === 'A') {
+                    addLogEntry('Liaison secured signature. Application submitted via Lobby Node.', 'success');
+                    addLogEntry('Crisis averted: Eviction timeline paused pending grant dispersal.', 'success');
+                    badge.className = "px-3 py-1 text-xs font-bold rounded-full bg-emerald-900 text-emerald-300 border border-emerald-700";
+                    badge.innerText = "STABILIZED";
+                } else {
+                    addLogEntry('Liaison provided printed packet and bus pass to resident. Prep for walk-in complete.', 'success');
+                    addLogEntry('Crisis averted: Resident arrived at CAM fully prepared. Funds pledged to CPS.', 'success');
+                    badge.className = "px-3 py-1 text-xs font-bold rounded-full bg-emerald-900 text-emerald-300 border border-emerald-700";
+                    badge.innerText = "STABILIZED";
+                }
+                state[unit].resolved = true;
+            }, 3000);
+        }
+
+    </script>
+</body>
+</html>
+```

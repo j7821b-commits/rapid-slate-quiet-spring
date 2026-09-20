@@ -1,0 +1,36 @@
+{
+  "url": "http://127.0.0.1:8080/",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "ALMA",
+      "hasCanvas": false,
+      "bodyTextLen": 3142,
+      "bodyTextHash": "f2bf01b0a6230fa3730e43301261d6c3d6abcaba822820649001fcf8da5fc847",
+      "bodyTextPrefix": "ALMA ASSISTANCE LEDGER FOR MUTUAL AID ALMA 07 ALMA is not a char",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "ALMA",
+      "hasCanvas": false,
+      "bodyTextLen": 3142,
+      "bodyTextHash": "f2bf01b0a6230fa3730e43301261d6c3d6abcaba822820649001fcf8da5fc847",
+      "bodyTextPrefix": "ALMA ASSISTANCE LEDGER FOR MUTUAL AID ALMA 07 ALMA is not a char",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview-mobile.png"
+    }
+  },
+  "brandWarnings": [],
+  "authWarnings": [],
+  "verdictFile": "/workspace/screenshots/app-builder-preview.json"
+}
