@@ -175,6 +175,26 @@ var Bus = createLucideIcon("bus", [
 * This source code is licensed under the ISC license.
 * See the LICENSE file in the root directory of this source tree.
 */
+var ChevronLeft = createLucideIcon("chevron-left", [["path", {
+	d: "m15 18-6-6 6-6",
+	key: "1wnfg3"
+}]]);
+/**
+* @license lucide-react v0.510.0 - ISC
+*
+* This source code is licensed under the ISC license.
+* See the LICENSE file in the root directory of this source tree.
+*/
+var ChevronRight = createLucideIcon("chevron-right", [["path", {
+	d: "m9 18 6-6-6-6",
+	key: "mthhwq"
+}]]);
+/**
+* @license lucide-react v0.510.0 - ISC
+*
+* This source code is licensed under the ISC license.
+* See the LICENSE file in the root directory of this source tree.
+*/
 var CircleAlert = createLucideIcon("circle-alert", [
 	["circle", {
 		cx: "12",
@@ -478,4 +498,4 @@ var X = createLucideIcon("x", [["path", {
 	key: "d8bk6v"
 }]]);
 //#endregion
-export { Bus as _, RotateCcw as a, ArrowDownToLine as b, MapPin as c, Info as d, House as f, CircleAlert as g, CircleCheck as h, TriangleAlert as i, Lock as l, DoorClosed as m, UserRound as n, Printer as o, Handshake as p, UserRoundCheck as r, NotebookPen as s, X as t, LoaderCircle as u, BookMarked as v, ArrowUpFromLine as y };
+export { ArrowDownToLine as S, ChevronRight as _, RotateCcw as a, BookMarked as b, MapPin as c, Info as d, House as f, CircleAlert as g, CircleCheck as h, TriangleAlert as i, Lock as l, DoorClosed as m, UserRound as n, Printer as o, Handshake as p, UserRoundCheck as r, NotebookPen as s, X as t, LoaderCircle as u, ChevronLeft as v, ArrowUpFromLine as x, Bus as y };

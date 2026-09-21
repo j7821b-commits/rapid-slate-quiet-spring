@@ -1,8 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { NodeConsole } from "@/components/swarm/node-console";
+import { Pamphlet } from "@/components/swarm/pamphlet";
 
 export const Route = createFileRoute("/")({ component: Home });
 
 function Home() {
-  return <NodeConsole />;
+  return <Pamphlet />;
 }

@@ -1,50 +1,20 @@
 import { i as __toESM } from "../_runtime.mjs";
-import { u as require_react } from "../_libs/@floating-ui/react-dom+[...].mjs";
-import { n as require_jsx_runtime } from "../_libs/radix-ui__react-context+react.mjs";
-import { _ as Bus, a as RotateCcw, b as ArrowDownToLine, c as MapPin, d as Info, f as House, g as CircleAlert, h as CircleCheck, l as Lock, m as DoorClosed, n as UserRound, o as Printer, p as Handshake, r as UserRoundCheck, s as NotebookPen, t as X, u as LoaderCircle, v as BookMarked, y as ArrowUpFromLine } from "../_libs/lucide-react.mjs";
-import { a as DialogPortal$1, h as Slot, i as DialogOverlay$1, n as DialogClose, o as DialogTitle$1, r as DialogContent$1, t as Dialog$1 } from "../_libs/@radix-ui/react-dialog+[...].mjs";
 import { t as cva } from "../_libs/class-variance-authority+clsx.mjs";
-import { a as cn, i as TooltipTrigger, n as Tooltip, o as formatUsd, r as TooltipContent, s as prefersReducedMotion } from "./router-DBEGdoLz.mjs";
+import { n as formatUsd, r as prefersReducedMotion, t as cn } from "./utils-Cugoa8uv.mjs";
+import { u as require_react } from "../_libs/@floating-ui/react-dom+[...].mjs";
+import { _ as Link, v as useNavigate } from "../_libs/@tanstack/react-router+[...].mjs";
+import { n as require_jsx_runtime } from "../_libs/radix-ui__react-context+react.mjs";
+import { S as ArrowDownToLine, a as RotateCcw, b as BookMarked, c as MapPin, d as Info, f as House, g as CircleAlert, h as CircleCheck, l as Lock, m as DoorClosed, n as UserRound, o as Printer, p as Handshake, r as UserRoundCheck, s as NotebookPen, t as X, u as LoaderCircle, x as ArrowUpFromLine, y as Bus } from "../_libs/lucide-react.mjs";
+import { a as DialogPortal$1, i as DialogOverlay$1, n as DialogClose, o as DialogTitle$1, r as DialogContent$1, t as Dialog$1 } from "../_libs/@radix-ui/react-dialog+[...].mjs";
+import { i as TooltipTrigger, n as Tooltip, r as TooltipContent } from "./router-Cusl0cq1.mjs";
+import { n as hasReadBrief, t as Button } from "./brief-gate-DIBAAljG.mjs";
 import { n as toast, t as Toaster } from "../_libs/sonner.mjs";
 import { t as create } from "../_libs/zustand.mjs";
 import { n as Root, t as Indicator } from "../_libs/radix-ui__react-progress.mjs";
 import { a as ResponsiveContainer, i as Line, n as YAxis, o as Tooltip$1, r as XAxis, s as Legend, t as LineChart } from "../_libs/recharts+[...].mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/routes-DhnA-lOJ.js
+//#region node_modules/.nitro/vite/services/ssr/assets/desk-_H9lGF9O.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
-var buttonVariants = cva("inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-[opacity,transform,background-color,color,border-color] duration-150 ease-[var(--ease-out-soft)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-bg disabled:pointer-events-none disabled:opacity-40 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 active:scale-[0.98]", {
-	variants: {
-		variant: {
-			default: "bg-primary text-primary-fg hover:opacity-90",
-			secondary: "bg-surface-2 text-fg border border-border hover:border-muted",
-			ghost: "text-muted hover:text-fg hover:bg-surface-2",
-			danger: "bg-danger text-danger-fg hover:opacity-90",
-			outline: "border border-border bg-transparent text-fg hover:bg-surface-2"
-		},
-		size: {
-			default: "h-11 rounded-md px-4",
-			sm: "h-9 rounded-sm px-3 text-xs",
-			lg: "h-12 rounded-md px-5",
-			icon: "size-11 rounded-md"
-		}
-	},
-	defaultVariants: {
-		variant: "default",
-		size: "default"
-	}
-});
-var Button = import_react.forwardRef(({ className, variant, size, asChild = false, ...props }, ref) => {
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(asChild ? Slot : "button", {
-		className: cn(buttonVariants({
-			variant,
-			size,
-			className
-		})),
-		ref,
-		...props
-	});
-});
-Button.displayName = "Button";
 var NODE = {
 	name: "ALMA 07",
 	acronym: "ALMA",
@@ -656,6 +626,15 @@ function NodeHeader() {
 					})] }),
 					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "hidden h-10 w-px bg-border sm:block" }),
 					/* @__PURE__ */ (0, import_jsx_runtime.jsx)(LiveClock, {}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, {
+						variant: "ghost",
+						size: "sm",
+						asChild: true,
+						children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Link, {
+							to: "/",
+							children: "The brief"
+						})
+					}),
 					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Button, {
 						variant: "ghost",
 						size: "sm",
@@ -1517,7 +1496,7 @@ function DoorVisit() {
 			}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 				className: "mt-2 text-xs text-subtle",
-				children: "If the office cares, the building stands and the household stays. That is the whole point."
+				children: "The building stands and the household stays. Same side. That is the whole point."
 			})
 		]
 	});
@@ -1876,8 +1855,27 @@ function NodeConsole() {
 		]
 	});
 }
-function Home() {
+function Desk() {
+	const navigate = useNavigate();
+	const [ok, setOk] = (0, import_react.useState)(false);
+	(0, import_react.useEffect)(() => {
+		if (hasReadBrief()) {
+			setOk(true);
+			return;
+		}
+		navigate({
+			to: "/",
+			replace: true
+		});
+	}, [navigate]);
+	if (!ok) return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+		className: "flex min-h-dvh items-center justify-center px-6",
+		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+			className: "text-sm text-muted",
+			children: "The brief first."
+		})
+	});
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(NodeConsole, {});
 }
 //#endregion
-export { Home as component };
+export { Desk as component };

@@ -1,0 +1,38 @@
+{
+  "url": "http://127.0.0.1:8081/",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "ALMA",
+      "hasCanvas": false,
+      "bodyTextLen": 266,
+      "bodyTextHash": "6f3a634926f79d577310277845653970dacd25ff9b092778c3cf07c80eaa2348",
+      "bodyTextPrefix": "ALMA · A BRIEF Read through to open the desk A BRIEF ALMA Assist",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/alma-gate-built.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "ALMA",
+      "hasCanvas": false,
+      "bodyTextLen": 266,
+      "bodyTextHash": "6f3a634926f79d577310277845653970dacd25ff9b092778c3cf07c80eaa2348",
+      "bodyTextPrefix": "ALMA · A BRIEF Read through to open the desk A BRIEF ALMA Assist",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/alma-gate-built-mobile.png"
+    }
+  },
+  "brandWarnings": [],
+  "authWarnings": [],
+  "verdictFile": "/workspace/screenshots/alma-gate-built.json",
+  "divergesFromBaseline": false,
+  "baselineReasons": []
+}

@@ -10,33 +10,53 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as BriefRouteImport } from './routes/brief'
+import { Route as DeskRouteImport } from './routes/desk'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BriefRoute = BriefRouteImport.update({
+  id: '/brief',
+  path: '/brief',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DeskRoute = DeskRouteImport.update({
+  id: '/desk',
+  path: '/desk',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/brief': typeof BriefRoute
+  '/desk': typeof DeskRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/brief': typeof BriefRoute
+  '/desk': typeof DeskRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/brief': typeof BriefRoute
+  '/desk': typeof DeskRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/brief' | '/desk'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/brief' | '/desk'
+  id: '__root__' | '/' | '/brief' | '/desk'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BriefRoute: typeof BriefRoute
+  DeskRoute: typeof DeskRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +68,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/brief': {
+      id: '/brief'
+      path: '/brief'
+      fullPath: '/brief'
+      preLoaderRoute: typeof BriefRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/desk': {
+      id: '/desk'
+      path: '/desk'
+      fullPath: '/desk'
+      preLoaderRoute: typeof DeskRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BriefRoute: BriefRoute,
+  DeskRoute: DeskRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

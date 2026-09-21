@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import { RotateCcw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { NODE } from "@/lib/swarm/catalog";
@@ -38,6 +39,9 @@ export function NodeHeader() {
           </div>
           <div className="hidden h-10 w-px bg-border sm:block" />
           <LiveClock />
+          <Button variant="ghost" size="sm" asChild>
+            <Link to="/">The brief</Link>
+          </Button>
           <Button variant="ghost" size="sm" onClick={reset} className="ml-auto lg:ml-0">
             <RotateCcw className="size-3.5" />
             Start over

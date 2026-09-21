@@ -1,0 +1,38 @@
+{
+  "url": "http://127.0.0.1:8081/brief",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "ALMA",
+      "hasCanvas": false,
+      "bodyTextLen": 263,
+      "bodyTextHash": "eebdcb127bef99ca4bd314b82dc33349016b27021d458d780176479db20fae59",
+      "bodyTextPrefix": "ALMA · A BRIEF Back to the desk A BRIEF ALMA Assistance Ledger f",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/alma-pamphlet-built.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "ALMA",
+      "hasCanvas": false,
+      "bodyTextLen": 263,
+      "bodyTextHash": "eebdcb127bef99ca4bd314b82dc33349016b27021d458d780176479db20fae59",
+      "bodyTextPrefix": "ALMA · A BRIEF Back to the desk A BRIEF ALMA Assistance Ledger f",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/alma-pamphlet-built-mobile.png"
+    }
+  },
+  "brandWarnings": [],
+  "authWarnings": [],
+  "verdictFile": "/workspace/screenshots/alma-pamphlet-built.json",
+  "divergesFromBaseline": false,
+  "baselineReasons": []
+}

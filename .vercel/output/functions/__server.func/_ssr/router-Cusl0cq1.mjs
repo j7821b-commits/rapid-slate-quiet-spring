@@ -1,13 +1,12 @@
 import { i as __toESM } from "../_runtime.mjs";
+import { t as cn } from "./utils-Cugoa8uv.mjs";
 import { u as require_react } from "../_libs/@floating-ui/react-dom+[...].mjs";
-import { _ as useRouter, f as createRouter, g as createRootRoute, h as createFileRoute, l as Scripts, m as lazyRouteComponent, p as Outlet, u as HeadContent } from "../_libs/@tanstack/react-router+[...].mjs";
+import { F as redirect, f as createRouter, g as createRootRoute, h as createFileRoute, l as Scripts, m as lazyRouteComponent, p as Outlet, u as HeadContent, y as useRouter } from "../_libs/@tanstack/react-router+[...].mjs";
 import { n as require_jsx_runtime } from "../_libs/radix-ui__react-context+react.mjs";
 import { i as TriangleAlert } from "../_libs/lucide-react.mjs";
 import { a as union, i as string, n as number, r as object, t as literal } from "../_libs/zod.mjs";
 import { a as Trigger, i as Root3, n as Portal, r as Provider, t as Content2 } from "../_libs/@radix-ui/react-tooltip+[...].mjs";
-import { n as clsx } from "../_libs/class-variance-authority+clsx.mjs";
-import { t as twMerge } from "../_libs/tailwind-merge.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/router-DBEGdoLz.js
+//#region node_modules/.nitro/vite/services/ssr/assets/router-Cusl0cq1.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 var __defProp = Object.defineProperty;
@@ -311,21 +310,6 @@ function PreviewHostBridge() {
 	}, [router]);
 	return null;
 }
-function cn(...inputs) {
-	return twMerge(clsx(inputs));
-}
-function formatUsd(n) {
-	const formatted = Math.abs(n).toLocaleString("en-US", {
-		style: "currency",
-		currency: "USD",
-		maximumFractionDigits: 0
-	});
-	return n < 0 ? `-${formatted}` : formatted;
-}
-function prefersReducedMotion() {
-	if (typeof window === "undefined") return true;
-	return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-}
 function TooltipProvider({ delayDuration = 200, ...props }) {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Provider, {
 		delayDuration,
@@ -341,9 +325,9 @@ function TooltipContent({ className, sideOffset = 6, ...props }) {
 		...props
 	}) });
 }
-var styles_default = "/assets/styles-CCGKAJeO.css";
+var styles_default = "/assets/styles-D9KU0KYg.css";
 var APP_NAME = "ALMA";
-var Route$1 = createRootRoute({
+var Route$3 = createRootRoute({
 	head: () => ({
 		meta: [
 			{ charSet: "utf-8" },
@@ -408,13 +392,35 @@ var Route$1 = createRootRoute({
 		})]
 	})
 });
-var $$splitComponentImporter = () => import("./routes-DhnA-lOJ.mjs");
-var rootRouteChildren = { IndexRoute: createFileRoute("/")({ component: lazyRouteComponent($$splitComponentImporter, "component") }).update({
-	id: "/",
-	path: "/",
-	getParentRoute: () => Route$1
-}) };
-var routeTree = Route$1._addFileChildren(rootRouteChildren)._addFileTypes();
+var $$splitComponentImporter$2 = () => import("./routes-DOkVLMAO.mjs");
+var Route$2 = createFileRoute("/")({ component: lazyRouteComponent($$splitComponentImporter$2, "component") });
+var $$splitComponentImporter$1 = () => import("./brief-j-Oag7d_.mjs");
+var Route$1 = createFileRoute("/brief")({
+	beforeLoad: () => {
+		throw redirect({ to: "/" });
+	},
+	component: lazyRouteComponent($$splitComponentImporter$1, "component")
+});
+var $$splitComponentImporter = () => import("./desk-_H9lGF9O.mjs");
+var Route = createFileRoute("/desk")({ component: lazyRouteComponent($$splitComponentImporter, "component") });
+var rootRouteChildren = {
+	IndexRoute: Route$2.update({
+		id: "/",
+		path: "/",
+		getParentRoute: () => Route$3
+	}),
+	BriefRoute: Route$1.update({
+		id: "/brief",
+		path: "/brief",
+		getParentRoute: () => Route$3
+	}),
+	DeskRoute: Route.update({
+		id: "/desk",
+		path: "/desk",
+		getParentRoute: () => Route$3
+	})
+};
+var routeTree = Route$3._addFileChildren(rootRouteChildren)._addFileTypes();
 var router_exports = /* @__PURE__ */ __exportAll({ getRouter: () => getRouter });
 function getRouter() {
 	return createRouter({
@@ -423,4 +429,4 @@ function getRouter() {
 	});
 }
 //#endregion
-export { cn as a, TooltipTrigger as i, Tooltip as n, formatUsd as o, TooltipContent as r, prefersReducedMotion as s, router_exports as t };
+export { TooltipTrigger as i, Tooltip as n, TooltipContent as r, router_exports as t };
